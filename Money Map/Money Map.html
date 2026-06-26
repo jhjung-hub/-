@@ -240,7 +240,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     <button class="icon-btn" onclick="openSettings()" title="설정">⚙️</button>
     <button class="icon-btn" onclick="doLock()" title="잠금">🔒</button>
   </div>
-  <p id="header-date">마지막 업데이트: 2026년 6월 26일 23:09 · ⏳ 저장 중...</p>
+  <p id="header-date">마지막 업데이트: 2026년 6월 26일 23:16 · ⏳ 저장 중...</p>
   <div class="tabs">
     
     
@@ -342,18 +342,6 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           <div class="tl-date">2026.06.15 완료</div>
           <div class="tl-title">중도금 1차 (10%)</div>
           <div class="tl-amount c-green">79,460,000원 납부완료</div>
-        </div>
-<div class="tl-item">
-          <div class="tl-dot active-now"></div>
-          <div class="tl-date">2026.06.26 임박</div>
-          <div class="tl-title">신협적금</div>
-          <div class="tl-amount c-blue">+6,130,000원</div>
-        </div>
-<div class="tl-item">
-          <div class="tl-dot future"></div>
-          <div class="tl-date">2026.10.01</div>
-          <div class="tl-title">신협예금 2</div>
-          <div class="tl-amount ">+20,000,000원</div>
         </div>
 <div class="tl-item">
           <div class="tl-dot future"></div>
@@ -474,7 +462,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
         <tfoot><tr class="summary-row"><td>합계</td><td class="tnum" id="bank-tot-bal">225,817</td><td class="tnum" id="bank-tot-park">24,011,126</td><td class="tnum" id="bank-tot-sav">7,400,000</td><td class="tnum" id="bank-tot-dep">91,933,505</td><td class="tnum" id="bank-tot-fund">51,780</td><td class="tnum" id="bank-tot-sub">19,100,000</td><td class="tnum" id="bank-tot-dooyak">18,900,000</td></tr></tfoot>
       </table>
     </div>
-    <div id="bank-save-row" style="margin-top: 10px; text-align: right; display: none;">
+    <div id="bank-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveBankEdit()">💾 저장</button>
       
     </div>
@@ -498,7 +486,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신한청년적금</td><td contenteditable="false">신한은행</td><td class="tnum" contenteditable="false">300,000</td><td class="tnum" contenteditable="false">3,600,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">3,642,278</td><td contenteditable="false">2026.04.13</td><td contenteditable="false">4.55%</td><td contenteditable="false"><span class="tag tag-gray">만기완료</span></td><td contenteditable="false">중도금 자금 사용</td></tr>
           <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신협적금</td><td contenteditable="false">신협</td><td class="tnum" contenteditable="false">500,000</td><td class="tnum" contenteditable="false">6,000,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">6,130,000</td><td contenteditable="false">2026.06.26</td><td contenteditable="false">4.00%</td><td contenteditable="false"><span class="tag tag-red">중도해지</span></td><td contenteditable="false">계약금 2차 사용</td></tr>
           <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>하나청약</td><td contenteditable="false">하나은행</td><td class="tnum" contenteditable="false">100,000</td><td class="tnum" contenteditable="false">19,100,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">19,100,000</td><td contenteditable="false">—</td><td contenteditable="false">—</td><td contenteditable="false"><span class="tag tag-green">납입중</span></td><td contenteditable="false">191회차 유지</td></tr>
-          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>국민 청년도약</td><td contenteditable="false">국민은행</td><td class="tnum" contenteditable="false">700,000</td><td class="tnum" contenteditable="false">18,900,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">50,000,000</td><td contenteditable="false">2029.03.18</td><td contenteditable="false">4.50%</td><td contenteditable="false"><span class="tag tag-green">납입중</span></td><td contenteditable="false">만기 예상 5천만원</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>국민 청년도약</td><td contenteditable="false">국민은행</td><td class="tnum" contenteditable="false">700,000</td><td class="tnum" contenteditable="false">18,900,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">50,000,000</td><td contenteditable="false">2029.03.18</td><td contenteditable="false">4.50%</td><td contenteditable="false"><span class="tag tag-blue">만기임박</span></td><td contenteditable="false">만기 예상 5천만원</td></tr>
           <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>하나적금 (신규)</td><td contenteditable="false">하나은행</td><td class="tnum" contenteditable="false">200,000</td><td class="tnum" contenteditable="false">1,200,000</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">—</td><td contenteditable="false">2027.01.28</td><td contenteditable="false">—</td><td contenteditable="false"><span class="tag tag-green">납입중</span></td><td contenteditable="false">26.01 신규</td></tr>
           <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>국민 IRP</td><td contenteditable="false">국민은행</td><td class="tnum" contenteditable="false">100,000</td><td class="tnum" contenteditable="false">—</td><td class="tnum s-mat" contenteditable="false" oninput="recalcSavingsTotal()">—</td><td contenteditable="false">—</td><td contenteditable="false">—</td><td contenteditable="false"><span class="tag tag-green">납입중</span></td><td contenteditable="false">퇴직연금</td></tr>
         </tbody>
@@ -516,7 +504,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
   <div class="card">
     <div class="card-title">
       예금 계좌 현황
-      <button class="btn btn-edit" onclick="toggleTableEdit('deposit-tbody','deposit-save-row',this)">✕</button>
+      <button class="btn btn-edit" onclick="toggleTableEdit('deposit-tbody','deposit-save-row',this)">✏️</button>
     </div>
     <div class="table-wrap">
       <table>
@@ -524,17 +512,17 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           <tr><th>계좌명</th><th>은행</th><th>원금</th><th>만기 수령액</th><th>만기일</th><th>이율</th><th>상태</th><th>용도</th></tr>
         </thead>
         <tbody id="deposit-tbody">
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>내일채움공제</td><td contenteditable="true">진흥공단</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">28,240,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">30,156,947</td><td contenteditable="true">2026.01.19</td><td contenteditable="true">—</td><td><select class="status-sel"><option>납입중</option><option selected="">만기완료</option><option>만기임박</option><option>중도해지</option><option>유지중</option></select></td><td contenteditable="true">계약금 2차 사용</td></tr>
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>새마을출자금</td><td contenteditable="true">새마을금고</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">27,484,803</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">27,484,803</td><td contenteditable="true">2026.02</td><td contenteditable="true">—</td><td><select class="status-sel"><option>납입중</option><option selected="">만기완료</option><option>만기임박</option><option>중도해지</option><option>유지중</option></select></td><td contenteditable="true">계약금 2차 사용</td></tr>
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>수협예금</td><td contenteditable="true">수협은행</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">30,000,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">30,000,000</td><td contenteditable="true">2026.05.28</td><td contenteditable="true">3.20%</td><td><select class="status-sel"><option>납입중</option><option selected="">만기완료</option><option>만기임박</option><option>중도해지</option><option>유지중</option></select></td><td contenteditable="true">중도금 1차 사용</td></tr>
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신협예금</td><td contenteditable="true">신협</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">40,000,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">40,000,000</td><td contenteditable="true">2026.06.02</td><td contenteditable="true">3.32%</td><td><select class="status-sel"><option>납입중</option><option selected="">만기완료</option><option>만기임박</option><option>중도해지</option><option>유지중</option></select></td><td contenteditable="true">중도금 1차 사용</td></tr>
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신협예금 2</td><td contenteditable="true">신협</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">20,000,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">20,000,000</td><td contenteditable="true">2026.10.01</td><td contenteditable="true">3.10%</td><td><select class="status-sel"><option>납입중</option><option>만기완료</option><option>만기임박</option><option>중도해지</option><option selected="">유지중</option></select></td><td contenteditable="true">중도금 1차 사용</td></tr>
-          <tr><td contenteditable="true"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>새마을예금</td><td contenteditable="true">새마을금고</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">600,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">600,000</td><td contenteditable="true">2026.12.17</td><td contenteditable="true">3.15%</td><td><select class="status-sel"><option>납입중</option><option>만기완료</option><option>만기임박</option><option>중도해지</option><option selected="">유지중</option></select></td><td contenteditable="true">—</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>내일채움공제</td><td contenteditable="false">진흥공단</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">28,240,000</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">30,156,947</td><td contenteditable="false">2026.01.19</td><td contenteditable="false">—</td><td><span class="tag tag-gray">만기완료</span></td><td contenteditable="false">계약금 2차 사용</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>새마을출자금</td><td contenteditable="false">새마을금고</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">27,484,803</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">27,484,803</td><td contenteditable="false">2026.02</td><td contenteditable="false">—</td><td><span class="tag tag-gray">만기완료</span></td><td contenteditable="false">계약금 2차 사용</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>수협예금</td><td contenteditable="false">수협은행</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">30,000,000</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">30,000,000</td><td contenteditable="false">2026.05.28</td><td contenteditable="false">3.20%</td><td><span class="tag tag-gray">만기완료</span></td><td contenteditable="false">중도금 1차 사용</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신협예금</td><td contenteditable="false">신협</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">40,000,000</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">40,000,000</td><td contenteditable="false">2026.06.02</td><td contenteditable="false">3.32%</td><td><span class="tag tag-gray">만기완료</span></td><td contenteditable="false">중도금 1차 사용</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신협예금 2</td><td contenteditable="false">신협</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">20,000,000</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">20,000,000</td><td contenteditable="false">2026.10.01</td><td contenteditable="false">3.10%</td><td><span class="tag tag-red">중도해지</span></td><td contenteditable="false">중도금 1차 사용</td></tr>
+          <tr><td contenteditable="false"><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>새마을예금</td><td contenteditable="false">새마을금고</td><td class="tnum" contenteditable="false" oninput="recalcDepositTotal()">600,000</td><td class="tnum d-mat" contenteditable="false" oninput="recalcDepositTotal()">600,000</td><td contenteditable="false">2026.12.17</td><td contenteditable="false">3.15%</td><td><span class="tag tag-orange">유지중</span></td><td contenteditable="false">—</td></tr>
         </tbody>
         <tfoot><tr class="summary-row"><td colspan="2">만기수령액 합계</td><td class="tnum" id="deposit-principal-total">146,324,803</td><td class="tnum" id="deposit-total">148,241,750</td><td colspan="4"></td></tr></tfoot>
       </table>
     </div>
-    <div id="deposit-save-row" style="margin-top: 10px; text-align: right;">
+    <div id="deposit-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveTableEdit('deposit-tbody','deposit-save-row')">💾 저장</button>
       
     </div>
@@ -588,7 +576,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund5-total">92,000,000</td><td id="fund5-status" style="font-weight: 700; color: rgb(10, 124, 78);">✓ 예산 충족</td></tr></tfoot>
         </table>
-        <div id="fund5-save" style="margin-top: 6px; display: none;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund5-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund5-body','fund5-save')">💾 저장</button></span><div style="clear:both;"></div></div>
+        <div id="fund5-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund5-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund5-body','fund5-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
       <div class="section-header" style="font-size:11px;">중도금 6차 (29.06.15) · 79,460,000원 <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund6-body','fund6-save',this)">✏️</button></div>
@@ -600,7 +588,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund6-total">0</td><td id="fund6-status" style="font-weight: 700; color: rgb(192, 57, 43);">✗ 예산 부족</td></tr></tfoot>
         </table>
-        <div id="fund6-save" style="margin-top: 6px; display: none;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund6-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund6-body','fund6-save')">💾 저장</button></span><div style="clear:both;"></div></div>
+        <div id="fund6-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund6-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund6-body','fund6-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
       <div class="section-header" style="font-size:11px;">잔금 (30.01) · 238,380,000원+α <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund-balance-body','fund-balance-save',this)">✏️</button></div>
@@ -615,7 +603,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund-balance-total">222,000,000</td><td id="fund-balance-status" style="font-weight: 700; color: rgb(192, 57, 43);">✗ 예산 부족</td></tr></tfoot>
         </table>
-        <div id="fund-balance-save" style="margin-top: 6px; display: none;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund-balance-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund-balance-body','fund-balance-save')">💾 저장</button></span><div style="clear:both;"></div></div>
+        <div id="fund-balance-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund-balance-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund-balance-body','fund-balance-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
       <!-- 납부완료 (접힌 상태) -->
@@ -663,15 +651,15 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     <div class="table-wrap">
       <table style="table-layout:fixed;width:100%;">
         <colgroup>
-          <col style="width:10%"><!-- 회차 -->
-          <col style="width:7%"> <!-- 구분 -->
-          <col style="width:9%"> <!-- 대출실행일 -->
+          <col style="width:12%"><!-- 회차 -->
+          <col style="width:8%"> <!-- 구분 -->
+          <col style="width:10%"><!-- 대출실행일 -->
           <col style="width:14%"><!-- 대출금액 -->
-          <col style="width:9%"> <!-- 거치기간(일) -->
-          <col style="width:7%"> <!-- 이율 -->
+          <col style="width:10%"><!-- 거치기간(일) -->
+          <col style="width:8%"> <!-- 이율 -->
           <col style="width:14%"><!-- 발생이자 -->
-          <col style="width:10%"><!-- 보증료 -->
-          <col style="width:8%"> <!-- 상태 -->
+          <col style="width:12%"><!-- 보증료 -->
+          <col style="width:12%"><!-- 상태 -->
         </colgroup>
         <thead>
           <tr><th>회차</th><th>구분</th><th>대출실행일</th><th style="text-align:right">대출금액</th><th style="text-align:right">거치기간(일)</th><th>이율</th><th style="text-align:right">발생이자</th><th style="text-align:right">보증료</th><th>상태</th></tr>
