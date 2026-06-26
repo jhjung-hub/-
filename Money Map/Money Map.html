@@ -110,6 +110,87 @@ tr.row-folded .row-fold-btn{color:#aaa;}
 /* ── TWO COL ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+/* ════════════════════════════════
+   📱 RESPONSIVE (모바일 480px 이하)
+   ════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* 헤더 */
+  .header { padding: 14px 14px 0; }
+  .header-top h1 { font-size: 16px; }
+  .header p { font-size: 10px; margin-bottom: 10px; }
+
+  /* 탭: 가로 스크롤 */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { padding: 8px 12px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+
+  /* 콘텐츠 패딩 */
+  .content { padding: 12px; }
+
+  /* 카드 */
+  .card { padding: 12px; margin-bottom: 12px; }
+
+  /* stat 카드: 2열 */
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-card { padding: 10px 8px; }
+  .stat-value { font-size: 14px !important; }
+  .stat-label { font-size: 9px; }
+  .stat-sub { font-size: 9px; }
+
+  /* 테이블 폰트 */
+  table { font-size: 10px; }
+  th, td { padding: 5px 4px !important; }
+
+  /* 버튼 터치 타깃 */
+  .btn { padding: 7px 12px; font-size: 11px; min-height: 34px; }
+  .btn-sm { padding: 5px 9px; font-size: 10px; min-height: 30px; }
+  .btn-icon { padding: 6px 8px; font-size: 16px; min-height: 34px; }
+
+  /* 잠금화면 */
+  .lock-box { width: 88vw; padding: 28px 20px; }
+
+  /* 모달 */
+  .modal { width: 92vw; padding: 20px 16px; max-height: 88vh; }
+
+  /* 카드 제목 줄바꿈 허용 */
+  .card-title { flex-wrap: wrap; gap: 6px; }
+
+  /* 섹션헤더 */
+  .section-header { font-size: 11px; }
+
+  /* two-col: 이미 700px에서 처리되지만 재확인 */
+  .two-col { grid-template-columns: 1fr; gap: 10px; }
+
+  /* 타임라인 */
+  .tl-amount { font-size: 11px; }
+  .tl-title { font-size: 12px; }
+  .tl-date { font-size: 10px; }
+
+  /* 진행바 */
+  .progress-label { font-size: 10px; }
+
+  /* 상태 배너 */
+  #gh-status-bar { font-size: 10px; }
+
+  /* tag */
+  .tag { font-size: 9px; padding: 2px 5px; }
+}
+
+/* 태블릿 (481~768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .modal { width: 80vw; }
+  .tab { padding: 9px 14px; font-size: 11px; }
+  .content { padding: 14px; }
+}
+
 
 /* ── TIMELINE ── */
 .timeline{position:relative;padding-left:24px;}
@@ -1663,8 +1744,12 @@ function saveMemo(){
 
 // ═══ GitHub 자동 업로드 ═══
 function getGHConfig(){
+  // 기본값 세팅 (첫 방문 시)
+  if(!localStorage.getItem('gh_repo')) localStorage.setItem('gh_repo','jhjung-hub/jh-hub');
+  if(!localStorage.getItem('gh_path')) localStorage.setItem('gh_path','Money Map/Money Map.html');
   return {
-    token: localStorage.getItem('gh_token')||'',
+    token: localStorage.getItem('gh_token')||''
+,
     repo:  localStorage.getItem('gh_repo')||'',
     path:  localStorage.getItem('gh_path')||''
   };
