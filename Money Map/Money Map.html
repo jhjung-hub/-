@@ -72,6 +72,8 @@ th{background:#f7f8fa;padding:8px 10px;text-align:left;font-weight:600;color:#55
 td{padding:7px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
 tr:hover td{background:#fafbff;}
 .tnum{text-align:right;font-variant-numeric:tabular-nums;}
+#bank-tbody td, #savings-tbody td, #deposit-tbody td{text-align:center;}
+#bank-tbody td.tnum, #savings-tbody td.tnum, #deposit-tbody td.tnum{text-align:right;}
 .summary-row td{background:#f7f8fa;font-weight:700;border-top:2px solid #e0e0e0;}
 td[contenteditable=true]{outline:none;cursor:text;}
 td[contenteditable=true]:focus{background:#fffbe6;box-shadow:inset 0 0 0 2px #f0c040;border-radius:3px;}
@@ -101,6 +103,8 @@ tr.row-folded .row-fold-btn{color:#aaa;}
 .btn-edit{background:#f0f2f5;color:#555;}.btn-edit:hover{background:#e0e4e8;}
 .btn-sm{padding:3px 9px;font-size:10px;}
 .btn-icon{background:none;border:none;cursor:pointer;font-size:14px;padding:2px 5px;border-radius:4px;transition:background 0.15s;}
+#stock-tbody .btn-icon,#trade-tbody .btn-icon,.fund-del-btn{visibility:hidden;pointer-events:none;}
+#stock-tbody.edit-mode .btn-icon,#trade-tbody.edit-mode .btn-icon,.fund-tbody.edit-mode .fund-del-btn{visibility:visible;pointer-events:auto;}
 .btn-icon:hover{background:#f0f0f0;}
 
 /* ── EDIT NOTE ── */
@@ -110,96 +114,43 @@ tr.row-folded .row-fold-btn{color:#aaa;}
 /* ── TWO COL ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media(max-width:700px){.two-col{grid-template-columns:1fr;}}
-/* ════════════════════════════════
-   📱 RESPONSIVE (모바일 480px 이하)
-   ════════════════════════════════ */
-@media (max-width: 480px) {
-
-  /* 헤더 */
-  .header { padding: 14px 14px 0; }
-  .header-top h1 { font-size: 16px; }
-  .header p { font-size: 10px; margin-bottom: 10px; }
-
-  /* 탭: 가로 스크롤 */
-  .tabs {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    flex-wrap: nowrap;
-    padding-bottom: 2px;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab { padding: 8px 12px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
-
-  /* 콘텐츠 패딩 */
-  .content { padding: 12px; }
-
-  /* 카드 */
-  .card { padding: 12px; margin-bottom: 12px; }
-
-  /* stat 카드: 2열 */
-  .stats-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .stat-card { padding: 10px 8px; }
-  .stat-value { font-size: 14px !important; }
-  .stat-label { font-size: 9px; }
-  .stat-sub { font-size: 9px; }
-
-  /* 테이블 폰트 */
-  table { font-size: 10px; }
-  th, td { padding: 5px 4px !important; }
-
-  /* 버튼 터치 타깃 */
-  .btn { padding: 7px 12px; font-size: 11px; min-height: 34px; }
-  .btn-sm { padding: 5px 9px; font-size: 10px; min-height: 30px; }
-  .btn-icon { padding: 6px 8px; font-size: 16px; min-height: 34px; }
-
-  /* 잠금화면 */
-  .lock-box { width: 88vw; padding: 28px 20px; }
-
-  /* 모달 */
-  .modal { width: 92vw; padding: 20px 16px; max-height: 88vh; }
-
-  /* 카드 제목 줄바꿈 허용 */
-  .card-title { flex-wrap: wrap; gap: 6px; }
-
-  /* 섹션헤더 */
-  .section-header { font-size: 11px; }
-
-  /* two-col: 이미 700px에서 처리되지만 재확인 */
-  .two-col { grid-template-columns: 1fr; gap: 10px; }
-
-  /* 타임라인 */
-  .tl-amount { font-size: 11px; }
-  .tl-title { font-size: 12px; }
-  .tl-date { font-size: 10px; }
-
-  /* 진행바 */
-  .progress-label { font-size: 10px; }
-
-  /* 상태 배너 */
-  #gh-status-bar { font-size: 10px; }
-
-  /* tag */
-  .tag { font-size: 9px; padding: 2px 5px; }
+@media(max-width:480px){
+  body{font-size:13px;}
+  .tabs{gap:2px;padding:0 4px;}
+  .tab-btn{padding:7px 8px;font-size:11px;}
+  .stats-row{grid-template-columns:1fr 1fr;gap:8px;}
+  .stat-value{font-size:16px;}
+  .card{padding:12px;}
+  .card-title{font-size:13px;}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{font-size:11px;}
+  th,td{padding:5px 6px;}
+  .btn{padding:5px 10px;font-size:11px;}
+  .btn-sm{padding:3px 7px;font-size:10px;}
+  .section-header{font-size:12px;}
+  .two-col{grid-template-columns:1fr;}
+  #memo{font-size:12px;min-height:80px;}
+  .header-bar{flex-wrap:wrap;gap:6px;}
+  .header-bar h1{font-size:15px;}
+  .header-right{flex-wrap:wrap;gap:4px;}
 }
-
-/* 태블릿 (481~768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .stats-row { grid-template-columns: 1fr 1fr; }
-  .modal { width: 80vw; }
-  .tab { padding: 9px 14px; font-size: 11px; }
-  .content { padding: 14px; }
+@media(min-width:481px) and (max-width:768px){
+  .stats-row{grid-template-columns:repeat(3,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .tab-btn{padding:8px 12px;font-size:12px;}
+  table{font-size:12px;}
+  th,td{padding:6px 7px;}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 }
-
 
 /* ── TIMELINE ── */
 .timeline{position:relative;padding-left:24px;}
 .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:#e8e8e8;}
 .tl-item{position:relative;margin-bottom:14px;}
 .tl-dot{position:absolute;left:-20px;top:3px;width:10px;height:10px;border-radius:50%;border:2px solid white;}
-.tl-dot.done{background:#0a7c4e;box-shadow:0 0 0 3px #e6f9f0;}
+.tl-dot.done{background:#bbb;box-shadow:0 0 0 3px #eeeeee;}
 .tl-dot.active-now{background:#0f3460;box-shadow:0 0 0 3px #e8f0fe;animation:pulse 1.5s infinite;}
-.tl-dot.future{background:#ccc;}
+.tl-dot.future{background:#3a86ff;box-shadow:0 0 0 3px #dbeafe;}
 .tl-dot.loan{background:#e07b00;box-shadow:0 0 0 3px #fff3e0;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px #e8f0fe;}50%{box-shadow:0 0 0 5px #c5d8fe;}}
 .tl-date{font-size:10px;color:#999;}
@@ -292,7 +243,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     <button class="icon-btn" onclick="openSettings()" title="설정">⚙️</button>
     <button class="icon-btn" onclick="doLock()" title="잠금">🔒</button>
   </div>
-  <p id="header-date">마지막 업데이트: 2026년 6월 25일</p>
+  <p id="header-date">마지막 업데이트: —</p>
   <div class="tabs">
     <button class="tab active" id="tab-btn-dashboard" onclick="showTab('dashboard',this)">📊 대시보드</button>
     <button class="tab" id="tab-btn-savings" onclick="showTab('savings',this)">💰 예·적금</button>
@@ -342,60 +293,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
         <button class="btn btn-edit btn-sm" id="hide-done-btn" onclick="toggleHideDone()" style="font-size:10px;">지난건 숨기기</button>
       </div>
       <div class="timeline" id="timeline-wrap">
-        <div class="tl-item">
-          <div class="tl-dot done"></div>
-          <div class="tl-date">2026.01.19 완료</div>
-          <div class="tl-title">내일채움 만기</div>
-          <div class="tl-amount c-green">+30,156,947원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot done"></div>
-          <div class="tl-date">2026.05.28 완료</div>
-          <div class="tl-title">수협예금 만기</div>
-          <div class="tl-amount c-green">+30,000,000원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot done"></div>
-          <div class="tl-date">2026.06.02 완료</div>
-          <div class="tl-title">신협예금 만기</div>
-          <div class="tl-amount c-green">+40,000,000원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot done"></div>
-          <div class="tl-date">2026.06.15 완료</div>
-          <div class="tl-title">중도금 1차 납부</div>
-          <div class="tl-amount c-green">79,460,000원 납부완료</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot active-now"></div>
-          <div class="tl-date">2026.06.26 임박</div>
-          <div class="tl-title">신협적금 만기</div>
-          <div class="tl-amount c-blue">+6,000,000원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot future"></div>
-          <div class="tl-date">2026.10.01</div>
-          <div class="tl-title">신협예금 만기</div>
-          <div class="tl-amount">+20,000,000원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot future"></div>
-          <div class="tl-date">2026.12.17</div>
-          <div class="tl-title">새마을예금 만기</div>
-          <div class="tl-amount">+600,000원</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot loan"></div>
-          <div class="tl-date">2027.01.15</div>
-          <div class="tl-title">중도금 2차 납부</div>
-          <div class="tl-amount c-orange">79,460,000원 (대출)</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot future"></div>
-          <div class="tl-date">2029.03.18</div>
-          <div class="tl-title">국민 청년도약 만기</div>
-          <div class="tl-amount c-green">+50,000,000원 예상</div>
-        </div>
+        <!-- auto-generated by buildTimeline() -->
       </div>
     </div>
 
@@ -408,23 +306,24 @@ tr.row-folded .row-fold-btn{color:#aaa;}
             <span style="font-size:12px;color:#555;">납부 진행률</span>
             <span style="font-size:12px;font-weight:700;" class="c-green">중도금 1차 완료</span>
           </div>
-          <div class="progress-bar"><div class="progress-fill" style="width:35%;background:linear-gradient(90deg,#0a7c4e,#16a36e);"></div></div>
+          <div class="progress-bar"><div id="dash-progress-fill" class="progress-fill" style="width:35%;background:linear-gradient(90deg,#0a7c4e,#16a36e);"></div></div>
           <div class="progress-label"><span>계약금 + 중도금 1차 완료</span><span>3/9회</span></div>
         </div>
         <table style="width:100%;font-size:11px;">
           <tr><td style="color:#888;padding:4px 0;">분양가 (발코니·에어컨 포함)</td><td class="tnum" style="font-weight:700;">817,200,000</td></tr>
-          <tr><td style="color:#888;padding:4px 0;">납부 완료 (계약금+중도금1차)</td><td class="tnum" style="color:#0a7c4e;font-weight:700;">-158,920,000</td></tr>
-          <tr><td style="color:#888;padding:4px 0;">중도금 대출 예정 (2~4차)</td><td class="tnum" style="color:#e07b00;font-weight:700;">238,380,000</td></tr>
-          <tr><td style="color:#888;padding:4px 0;">자납 예정 (5~6차)</td><td class="tnum" style="color:#6c3483;font-weight:700;">158,820,000</td></tr>
-          <tr><td style="color:#888;padding:4px 0;">잔금 (30년 1월)</td><td class="tnum" style="color:#c0392b;font-weight:700;">238,380,000+</td></tr>
+          <tr><td style="color:#888;padding:4px 0;">납부 완료 (계약금+중도금1차)</td><td class="tnum" id="dash-apt-paid" style="color:#0a7c4e;font-weight:700;">-158,920,000</td></tr>
+          <tr><td style="color:#888;padding:4px 0;">중도금 대출 예정 (2~4차)</td><td class="tnum" id="dash-apt-loan" style="color:#e07b00;font-weight:700;">238,380,000</td></tr>
+          <tr><td style="color:#888;padding:4px 0;">자납 예정 (5~6차)</td><td class="tnum" id="dash-apt-self" style="color:#6c3483;font-weight:700;">158,820,000</td></tr>
+          <tr><td style="color:#888;padding:4px 0;">잔금 (30년 1월)</td><td class="tnum" id="dash-apt-balance" style="color:#c0392b;font-weight:700;">238,380,000+</td></tr>
         </table>
       </div>
       <div class="card" style="margin-bottom:0;">
         <div class="card-title">
           📌 메모
           <div style="display:flex;gap:6px;">
-            <button class="btn btn-edit btn-sm" id="memo-edit-btn" onclick="toggleMemoEdit()">✏️ 수정</button>
+            <button class="btn btn-edit btn-sm" id="memo-edit-btn" onclick="toggleMemoEdit()">✏️</button>
             <button class="btn btn-success btn-sm" id="memo-save-btn" style="display:none;" onclick="saveMemo()">💾 저장</button>
+            <button class="btn btn-edit btn-sm" id="memo-cancel-btn" style="display:none;" onclick="cancelMemo()">✕</button>
           </div>
         </div>
         <textarea id="memo" readonly style="width:100%;border:1.5px solid #e8e8e8;border-radius:8px;padding:10px;font-size:12px;resize:vertical;min-height:90px;font-family:inherit;color:#333;cursor:default;background:#fafafa;box-sizing:border-box;" placeholder="메모를 입력하세요...">• 중도금 1차 납부 완료 (26.06.15)
@@ -443,14 +342,14 @@ tr.row-folded .row-fold-btn{color:#aaa;}
   <div class="card">
     <div class="card-title">
       은행별 잔액 현황
-      <button class="btn btn-edit" id="bank-edit-btn" onclick="toggleBankEdit()">✏️ 수정</button>
+      <button class="btn btn-edit" id="bank-edit-btn" onclick="toggleBankEdit()">✏️</button>
     </div>
     <div class="table-wrap">
       <table id="bank-table">
         <thead>
-          <tr><th>은행</th><th>잔액</th><th>파킹</th><th>적금</th><th>예금</th><th>출자금</th><th>청약</th><th>청년도약</th></tr>
+          <tr><th style="text-align:center">은행</th><th style="text-align:center">잔액</th><th style="text-align:center">파킹</th><th style="text-align:center">적금</th><th style="text-align:center">예금</th><th style="text-align:center">출자금</th><th style="text-align:center">청약</th><th style="text-align:center">청년도약</th></tr>
         </thead>
-        <tbody>
+        <tbody id="bank-tbody">
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>국민은행</td><td class="tnum bank-cell">160,246</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">1,333,505</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">18,900,000</td></tr>
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>케이뱅크</td><td class="tnum bank-cell">65,571</td><td class="tnum bank-cell">24,011,126</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td></tr>
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>하나은행</td><td class="tnum bank-cell">0</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">1,400,000</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">19,100,000</td><td class="tnum bank-cell">—</td></tr>
@@ -460,11 +359,12 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>우리은행</td><td class="tnum bank-cell">0</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td></tr>
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>신한은행</td><td class="tnum bank-cell">0</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td><td class="tnum bank-cell">—</td></tr>
         </tbody>
+        <tfoot><tr class="summary-row"><td>합계</td><td class="tnum" id="bank-tot-bal">—</td><td class="tnum" id="bank-tot-park">—</td><td class="tnum" id="bank-tot-sav">—</td><td class="tnum" id="bank-tot-dep">—</td><td class="tnum" id="bank-tot-fund">—</td><td class="tnum" id="bank-tot-sub">—</td><td class="tnum" id="bank-tot-dooyak">—</td></tr></tfoot>
       </table>
     </div>
     <div id="bank-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveBankEdit()">💾 저장</button>
-      <button class="btn btn-danger" onclick="cancelBankEdit()" style="margin-left:6px;">취소</button>
+      
     </div>
   </div>
 
@@ -473,13 +373,13 @@ tr.row-folded .row-fold-btn{color:#aaa;}
   <div class="card">
     <div class="card-title">
       적금 계좌 현황
-      <button class="btn btn-edit" onclick="toggleTableEdit('savings-tbody','savings-save-row')">✏️ 수정</button>
+      <button class="btn btn-edit" onclick="toggleTableEdit('savings-tbody','savings-save-row',this)">✏️</button>
     </div>
     <p class="edit-note">수정 버튼 클릭 후 <span>셀을 직접 편집</span>하고 저장하세요.</p>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>계좌명</th><th>은행</th><th>월 납입</th><th>누적 원금</th><th>만기 수령액</th><th>만기일</th><th>이율</th><th>상태</th><th>비고</th></tr>
+          <tr><th style="text-align:center">계좌명</th><th style="text-align:center">은행</th><th style="text-align:center">월 납입</th><th style="text-align:center">누적 원금</th><th style="text-align:center">만기 수령액</th><th style="text-align:center">만기일</th><th style="text-align:center">이율</th><th style="text-align:center">상태</th><th style="text-align:center">비고</th></tr>
         </thead>
         <tbody id="savings-tbody">
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>새마을적금</td><td>새마을금고</td><td class="tnum">200,000</td><td class="tnum">2,400,000</td><td class="tnum s-mat" contenteditable="true" oninput="recalcSavingsTotal()">2,449,720</td><td>2026.02.26</td><td>4.52%</td><td><span class="tag tag-gray">만기완료</span></td><td>중도금 자금 활용</td></tr>
@@ -490,12 +390,12 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>하나적금 (신규)</td><td>하나은행</td><td class="tnum">200,000</td><td class="tnum">1,200,000</td><td class="tnum s-mat" contenteditable="true" oninput="recalcSavingsTotal()">—</td><td>2027.01.28</td><td>—</td><td><span class="tag tag-green">납입중</span></td><td>26.01 신규</td></tr>
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>국민 IRP</td><td>국민은행</td><td class="tnum">100,000</td><td class="tnum">—</td><td class="tnum s-mat" contenteditable="true" oninput="recalcSavingsTotal()">—</td><td>—</td><td>—</td><td><span class="tag tag-green">납입중</span></td><td>퇴직연금</td></tr>
         </tbody>
-        <tfoot><tr class="summary-row"><td colspan="4">만기수령액 합계</td><td class="tnum" id="savings-total">—</td><td colspan="4"></td></tr></tfoot>
+        <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="sav-monthly-total">—</td><td class="tnum" id="sav-principal-total">—</td><td class="tnum" id="savings-total">—</td><td colspan="4"></td></tr></tfoot>
       </table>
     </div>
     <div id="savings-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveTableEdit('savings-tbody','savings-save-row')">💾 저장</button>
-      <button class="btn btn-danger" onclick="cancelTableEdit('savings-tbody','savings-save-row')" style="margin-left:6px;">취소</button>
+      
     </div>
   </div>
 
@@ -504,12 +404,12 @@ tr.row-folded .row-fold-btn{color:#aaa;}
   <div class="card">
     <div class="card-title">
       예금 계좌 현황
-      <button class="btn btn-edit" onclick="toggleTableEdit('deposit-tbody','deposit-save-row')">✏️ 수정</button>
+      <button class="btn btn-edit" onclick="toggleTableEdit('deposit-tbody','deposit-save-row',this)">✏️</button>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>계좌명</th><th>은행</th><th>원금</th><th>만기 수령액</th><th>만기일</th><th>이율</th><th>상태</th><th>용도</th></tr>
+          <tr><th style="text-align:center">계좌명</th><th style="text-align:center">은행</th><th style="text-align:center">원금</th><th style="text-align:center">만기 수령액</th><th style="text-align:center">만기일</th><th style="text-align:center">이율</th><th style="text-align:center">상태</th><th style="text-align:center">용도</th></tr>
         </thead>
         <tbody id="deposit-tbody">
           <tr><td><button class="row-fold-btn" onclick="foldRow(this)" title="접기/펴기">▼</button>내일채움공제</td><td>진흥공단</td><td class="tnum" contenteditable="true" oninput="recalcDepositTotal()">28,240,000</td><td class="tnum d-mat" contenteditable="true" oninput="recalcDepositTotal()">30,156,947</td><td>2026.01.19</td><td>—</td><td><span class="tag tag-gray">만기완료</span></td><td>계약금 2차 사용</td></tr>
@@ -524,7 +424,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     </div>
     <div id="deposit-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveTableEdit('deposit-tbody','deposit-save-row')">💾 저장</button>
-      <button class="btn btn-danger" onclick="cancelTableEdit('deposit-tbody','deposit-save-row')" style="margin-left:6px;">취소</button>
+      
     </div>
   </div>
 </div>
@@ -533,8 +433,8 @@ tr.row-folded .row-fold-btn{color:#aaa;}
 <div id="panel-apt" class="panel">
   <div class="stats-row">
     <div class="stat-card"><div class="stat-label">총 분양금액</div><div class="stat-value c-blue">817,200,000</div><div class="stat-sub">분양가+발코니+에어컨</div></div>
-    <div class="stat-card"><div class="stat-label">납부 완료</div><div class="stat-value c-green">158,920,000</div><div class="stat-sub">계약금+중도금1차</div></div>
-    <div class="stat-card"><div class="stat-label">중도금 대출 예정</div><div class="stat-value c-orange">238,380,000</div><div class="stat-sub">2~4차 대출</div></div>
+    <div class="stat-card"><div class="stat-label">납부 완료</div><div class="stat-value c-green" id="apt-stat-paid">158,920,000</div><div class="stat-sub">계약금+중도금1차</div></div>
+    <div class="stat-card"><div class="stat-label">중도금 대출 예정</div><div class="stat-value c-orange" id="apt-stat-loan">238,380,000</div><div class="stat-sub">2~4차 대출</div></div>
     <div class="stat-card"><div class="stat-label">잔금 (30년 1월)</div><div class="stat-value c-red">238,380,000+</div><div class="stat-sub">대출+자납 혼합</div></div>
   </div>
 
@@ -545,7 +445,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
       <div class="table-wrap">
         <table>
           <thead><tr><th>구분</th><th>납부일</th><th>금액</th><th>방법</th><th>상태</th></tr></thead>
-          <tbody>
+          <tbody id="sched-tbody">
             <tr><td>계약금 1차 (1.3%)</td><td>25.12.28</td><td class="tnum">10,000,000</td><td><span class="tag tag-green">자납</span></td><td><span class="tag tag-done">✓ 완료</span></td></tr>
             <tr><td>계약금 2차 (8.7%)</td><td>26.01.30</td><td class="tnum">69,460,000</td><td><span class="tag tag-green">자납</span></td><td><span class="tag tag-done">✓ 완료</span></td></tr>
             <tr><td>중도금 1차 (10%)</td><td>26.06.15</td><td class="tnum">79,460,000</td><td><span class="tag tag-purple">대출10만+자납</span></td><td><span class="tag tag-done">✓ 완료</span></td></tr>
@@ -566,36 +466,36 @@ tr.row-folded .row-fold-btn{color:#aaa;}
       <div class="card-title">💡 자금 출처 계획</div>
 
       <!-- 앞으로 납부할 것 (펼쳐진 상태) -->
-      <div class="section-header" style="margin-top:0;font-size:11px;">중도금 5차 (29.01.15) · 79,460,000원 <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund5-body','fund5-save')">✏️</button></div>
+      <div class="section-header" style="margin-top:0;font-size:11px;">중도금 5차 (29.01.15) · 79,460,000원 <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund5-body','fund5-save',this)">✏️</button></div>
       <div class="table-wrap" style="margin-bottom:14px;">
         <table>
           <thead><tr><th>출처</th><th>만기/해지일</th><th>금액</th><th>비고</th></tr></thead>
-          <tbody id="fund5-body">
+          <tbody id="fund5-body" class="fund-tbody">
             <tr><td contenteditable="true">국민 청년도약 만기</td><td contenteditable="true">29.03.18</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund5-body','fund5-total',2)">50,000,000</td><td contenteditable="true">29.03.18 만기</td></tr>
             <tr><td>27~29 저축</td><td contenteditable="true">—</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund5-body','fund5-total',2)">42,000,000</td><td contenteditable="true">예상</td></tr>
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund5-total">92,000,000</td><td id="fund5-status" style="font-weight:700;">✓ 예산 충족</td></tr></tfoot>
         </table>
-        <div id="fund5-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund5-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund5-body','fund5-save')">💾 저장</button><button class="btn btn-danger btn-sm" onclick="cancelFundEdit('fund5-body','fund5-save')" style="margin-left:4px;">취소</button></span><div style="clear:both;"></div></div>
+        <div id="fund5-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund5-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund5-body','fund5-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
-      <div class="section-header" style="font-size:11px;">중도금 6차 (29.06.15) · 79,460,000원 <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund6-body','fund6-save')">✏️</button></div>
+      <div class="section-header" style="font-size:11px;">중도금 6차 (29.06.15) · 79,460,000원 <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund6-body','fund6-save',this)">✏️</button></div>
       <div class="table-wrap" style="margin-bottom:14px;">
         <table>
           <thead><tr><th>출처</th><th>만기/해지일</th><th>금액</th><th>비고</th></tr></thead>
-          <tbody id="fund6-body">
+          <tbody id="fund6-body" class="fund-tbody">
             <tr><td contenteditable="true">저축 예정</td><td contenteditable="true">—</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund6-body','fund6-total',2)">79,460,000</td><td contenteditable="true">예상</td></tr>
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund6-total">79,460,000</td><td id="fund6-status" style="font-weight:700;">✓ 예산 충족</td></tr></tfoot>
         </table>
-        <div id="fund6-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund6-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund6-body','fund6-save')">💾 저장</button><button class="btn btn-danger btn-sm" onclick="cancelFundEdit('fund6-body','fund6-save')" style="margin-left:4px;">취소</button></span><div style="clear:both;"></div></div>
+        <div id="fund6-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund6-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund6-body','fund6-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
-      <div class="section-header" style="font-size:11px;">잔금 (30.01) · 238,380,000원+α <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund-balance-body','fund-balance-save')">✏️</button></div>
+      <div class="section-header" style="font-size:11px;">잔금 (30.01) · 238,380,000원+α <button class="btn btn-edit btn-sm" onclick="toggleFundEdit('fund-balance-body','fund-balance-save',this)">✏️</button></div>
       <div class="table-wrap" style="margin-bottom:14px;">
         <table>
           <thead><tr><th>출처</th><th>만기/해지일</th><th>금액</th><th>비고</th></tr></thead>
-          <tbody id="fund-balance-body">
+          <tbody id="fund-balance-body" class="fund-tbody">
             <tr><td contenteditable="true">주택담보대출</td><td contenteditable="true">30.01</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund-balance-body','fund-balance-total',2)">130,000,000</td><td contenteditable="true">예정</td></tr>
             <tr><td>국민 청년도약</td><td contenteditable="true">29.03.18</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund-balance-body','fund-balance-total',2)">50,000,000</td><td contenteditable="true">29.03.18 만기</td></tr>
             <tr><td>토스증권 잔액</td><td contenteditable="true">—</td><td class="tnum" contenteditable="true" oninput="recalcFundTotal('fund-balance-body','fund-balance-total',2)">20,000,000</td><td contenteditable="true">일부 활용</td></tr>
@@ -603,7 +503,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           </tbody>
           <tfoot><tr class="summary-row"><td colspan="2">합계</td><td class="tnum" id="fund-balance-total">242,000,000</td><td id="fund-balance-status" style="font-weight:700;">✓ 예산 충족</td></tr></tfoot>
         </table>
-        <div id="fund-balance-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund-balance-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund-balance-body','fund-balance-save')">💾 저장</button><button class="btn btn-danger btn-sm" onclick="cancelFundEdit('fund-balance-body','fund-balance-save')" style="margin-left:4px;">취소</button></span><div style="clear:both;"></div></div>
+        <div id="fund-balance-save" style="display:none;margin-top:6px;"><button class="btn btn-sm" style="background:#e8f4fd;color:#1A3A5C;border:1px solid #b8d4ea;float:left;" onclick="addFundRow('fund-balance-body')">+ 행 추가</button><span style="float:right;"><button class="btn btn-success btn-sm" onclick="saveFundEdit('fund-balance-body','fund-balance-save')">💾 저장</button></span><div style="clear:both;"></div></div>
       </div>
 
       <!-- 납부완료 (접힌 상태) -->
@@ -647,46 +547,62 @@ tr.row-folded .row-fold-btn{color:#aaa;}
 
   <!-- 중도금 대출 이자 -->
   <div class="card">
-    <div class="card-title">🏦 중도금 대출 이자 계산 (수정안 기준)</div>
+    <div class="card-title">🏦 중도금 대출 이자 계산 (수정안 기준)
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-edit btn-sm" id="loan-edit-btn" onclick="toggleLoanEdit(this)">✏️</button>
+      </div>
+    </div>
     <div class="table-wrap">
-      <table>
+      <table style="table-layout:fixed;width:100%;">
+        <colgroup>
+          <col style="width:12%"><!-- 회차 -->
+          <col style="width:8%"> <!-- 구분 -->
+          <col style="width:10%"><!-- 대출실행일 -->
+          <col style="width:14%"><!-- 대출금액 -->
+          <col style="width:10%"><!-- 거치기간(일) -->
+          <col style="width:8%"> <!-- 이율 -->
+          <col style="width:14%"><!-- 발생이자 -->
+          <col style="width:12%"><!-- 보증료 -->
+          <col style="width:12%"><!-- 상태 -->
+        </colgroup>
         <thead>
-          <tr><th>회차</th><th>대출실행일</th><th>대출금액</th><th>거치기간(일)</th><th>이율</th><th>발생이자</th><th>보증료</th><th>구분</th><th>상태</th></tr>
+          <tr><th style="text-align:center">회차</th><th style="text-align:center">구분</th><th style="text-align:center">대출실행일</th><th style="text-align:right">대출금액</th><th style="text-align:center">거치기간(일)</th><th style="text-align:center">이율</th><th style="text-align:right">발생이자</th><th style="text-align:right">보증료</th><th style="text-align:center">상태</th></tr>
         </thead>
         <tbody id="loan-tbody">
           <tr style="background:#e6f9f0;">
-            <td>1회 (대출)</td><td>26.06.15</td>
-            <td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">100,000</td>
-            <td class="tnum" contenteditable="true">1,309</td>
-            <td contenteditable="true">3.72%</td>
-            <td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">13,341</td>
-            <td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">1,000</td>
-            <td><span class="tag tag-orange">대출</span></td>
-            <td><span class="tag tag-done">✓ 완료</span></td>
+            <td style="text-align:center">1회 (대출)</td><td style="text-align:center"><span class="tag tag-orange">대출</span></td><td style="text-align:center">26.06.15</td>
+            <td class="tnum" oninput="recalcLoanTotals()">100,000</td>
+            <td style="text-align:center">1309</td>
+            <td style="text-align:center">3.72%</td>
+            <td class="tnum" oninput="recalcLoanTotals()">13,341</td>
+            <td class="tnum" oninput="recalcLoanTotals()">1,000</td>
+            <td style="text-align:center"><span class="tag tag-done">✓ 완료</span></td>
           </tr>
           <tr style="background:#e6f9f0;">
-            <td>1회 (자납)</td><td>26.06.15</td>
+            <td style="text-align:center">1회 (자납)</td><td style="text-align:center"><span class="tag tag-green">자납</span></td><td style="text-align:center">26.06.15</td>
             <td class="tnum">79,360,000</td>
-            <td>—</td><td>—</td><td>—</td><td>—</td>
-            <td><span class="tag tag-green">자납</span></td>
-            <td><span class="tag tag-done">✓ 완료</span></td>
+            <td style="text-align:center">—</td><td style="text-align:center">—</td><td>—</td><td>—</td>
+            <td style="text-align:center"><span class="tag tag-done">✓ 완료</span></td>
           </tr>
-          <tr><td>2회</td><td>27.01.15</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">79,460,000</td><td class="tnum" contenteditable="true">1,112</td><td contenteditable="true">3.72%</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">9,005,409</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">340,176</td><td><span class="tag tag-orange">대출</span></td><td><span class="tag tag-blue">예정</span></td></tr>
-          <tr><td>3회</td><td>27.09.15</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">79,460,000</td><td class="tnum" contenteditable="true">869</td><td contenteditable="true">3.72%</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">7,037,500</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">272,122</td><td><span class="tag tag-orange">대출</span></td><td><span class="tag tag-blue">예정</span></td></tr>
-          <tr><td>4회</td><td>28.05.15</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">79,460,000</td><td class="tnum" contenteditable="true">626</td><td contenteditable="true">3.72%</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">5,069,592</td><td class="tnum" contenteditable="true" oninput="recalcLoanTotals()">203,169</td><td><span class="tag tag-orange">대출</span></td><td><span class="tag tag-blue">예정</span></td></tr>
-          <tr><td>5회</td><td>29.01.15</td><td class="tnum">79,460,000</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="tag tag-green">자납</span></td><td><span class="tag tag-blue">예정</span></td></tr>
-          <tr><td>6회</td><td>29.06.15</td><td class="tnum">79,460,000</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="tag tag-green">자납</span></td><td><span class="tag tag-blue">예정</span></td></tr>
+          <tr><td style="text-align:center">2회</td><td style="text-align:center"><span class="tag tag-orange">대출</span></td><td style="text-align:center">27.01.15</td><td class="tnum" oninput="recalcLoanTotals()">79,460,000</td><td style="text-align:center">1112</td><td style="text-align:center">3.72%</td><td class="tnum" oninput="recalcLoanTotals()">9,005,409</td><td class="tnum" oninput="recalcLoanTotals()">340,176</td><td style="text-align:center"><span class="tag tag-blue">예정</span></td></tr>
+          <tr><td style="text-align:center">3회</td><td style="text-align:center"><span class="tag tag-orange">대출</span></td><td style="text-align:center">27.09.15</td><td class="tnum" oninput="recalcLoanTotals()">79,460,000</td><td style="text-align:center">869</td><td style="text-align:center">3.72%</td><td class="tnum" oninput="recalcLoanTotals()">7,037,500</td><td class="tnum" oninput="recalcLoanTotals()">272,122</td><td style="text-align:center"><span class="tag tag-blue">예정</span></td></tr>
+          <tr><td style="text-align:center">4회</td><td style="text-align:center"><span class="tag tag-orange">대출</span></td><td style="text-align:center">28.05.15</td><td class="tnum" oninput="recalcLoanTotals()">79,460,000</td><td style="text-align:center">626</td><td style="text-align:center">3.72%</td><td class="tnum" oninput="recalcLoanTotals()">5,069,592</td><td class="tnum" oninput="recalcLoanTotals()">203,169</td><td style="text-align:center"><span class="tag tag-blue">예정</span></td></tr>
+          <tr><td style="text-align:center">5회</td><td style="text-align:center"><span class="tag tag-green">자납</span></td><td style="text-align:center">29.01.15</td><td class="tnum">79,460,000</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td>—</td><td>—</td><td style="text-align:center"><span class="tag tag-blue">예정</span></td></tr>
+          <tr><td style="text-align:center">6회</td><td style="text-align:center"><span class="tag tag-green">자납</span></td><td style="text-align:center">29.06.15</td><td class="tnum">79,460,000</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td>—</td><td>—</td><td style="text-align:center"><span class="tag tag-blue">예정</span></td></tr>
         </tbody>
         <tfoot>
           <tr class="summary-row">
-            <td colspan="2">대출 합계</td><td class="tnum" id="loan-amt-total">238,480,000</td><td></td><td></td>
-            <td class="tnum" id="loan-int-total">21,125,842</td><td class="tnum" id="loan-gua-total">816,467</td><td colspan="2"></td>
+            <td colspan="3">대출 합계</td><td class="tnum" id="loan-amt-total">238,480,000</td><td></td><td></td>
+            <td class="tnum" id="loan-int-total">21,125,842</td><td class="tnum" id="loan-gua-total">816,467</td><td></td>
           </tr>
           <tr class="summary-row">
-            <td colspan="2">자납 합계</td><td class="tnum" id="loan-jab-total">238,280,000</td><td colspan="6"></td>
+            <td colspan="3">자납 합계</td><td class="tnum" id="loan-jab-total">238,280,000</td><td colspan="5"></td>
           </tr>
         </tfoot>
       </table>
+    </div>
+    <div id="loan-save-row" style="display:none;margin-top:10px;text-align:right;">
+      <button class="btn btn-success" onclick="saveLoanEdit()">💾 저장</button>
     </div>
     <div style="font-size:11px;color:#aaa;margin-top:8px;">※ 1회차: 10만원 대출 + 79,360,000 자납으로 이자 최소화. 이율 미확정 회차는 3.72% 기준 추정.</div>
   </div>
@@ -713,17 +629,17 @@ tr.row-folded .row-fold-btn{color:#aaa;}
       📅 월별 지출 분석
       <div style="display:flex;gap:6px;">
         <button class="btn btn-edit btn-sm" onclick="addMonthlyRow()">+ 행 추가</button>
-        <button class="btn btn-edit btn-sm" id="monthly-edit-btn" onclick="toggleMonthlyEdit()">✏️ 수정</button>
+        <button class="btn btn-edit btn-sm" id="monthly-edit-btn" onclick="toggleMonthlyEdit()">✏️</button>
       </div>
     </div>
     <div class="table-wrap">
       <table id="monthly-table">
         <thead>
           <tr>
-            <th>항목</th><th>구분</th>
-            <th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th>
-            <th>7월</th><th>8월</th><th>9월</th><th>10월</th><th>11월</th><th>12월</th>
-            <th>연합계</th>
+            <th style="text-align:center">항목</th><th style="text-align:center">구분</th>
+            <th style="text-align:center">1월</th><th style="text-align:center">2월</th><th style="text-align:center">3월</th><th style="text-align:center">4월</th><th style="text-align:center">5월</th><th style="text-align:center">6월</th>
+            <th style="text-align:center">7월</th><th style="text-align:center">8월</th><th style="text-align:center">9월</th><th style="text-align:center">10월</th><th style="text-align:center">11월</th><th style="text-align:center">12월</th>
+            <th style="text-align:center">연합계</th>
           </tr>
         </thead>
         <tbody id="monthly-tbody">
@@ -880,7 +796,7 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     </div>
     <div id="monthly-save-row" style="display:none;margin-top:10px;text-align:right;">
       <button class="btn btn-success" onclick="saveMonthlyEdit()">💾 저장</button>
-      <button class="btn btn-danger" onclick="cancelMonthlyEdit()" style="margin-left:6px;">취소</button>
+      
     </div>
   </div>
 </div>
@@ -894,8 +810,8 @@ tr.row-folded .row-fold-btn{color:#aaa;}
       <div class="card-title">
         📈 보유 종목
         <div style="display:flex;gap:6px;">
-          <button class="btn btn-primary btn-sm" onclick="addStockRow()">+ 종목 추가</button>
-          <button class="btn btn-edit btn-sm" id="stock-edit-btn" onclick="toggleStockEdit()">✏️ 수정</button>
+          <button class="btn btn-edit btn-sm" id="stock-add-btn" onclick="addStockRow()" style="display:none;">+ 행 추가</button>
+          <button class="btn btn-edit btn-sm" id="stock-edit-btn" onclick="toggleStockEdit()">✏️</button>
         </div>
       </div>
       <div class="table-wrap">
@@ -905,23 +821,26 @@ tr.row-folded .row-fold-btn{color:#aaa;}
           </thead>
           <tbody id="stock-tbody">
             <tr data-kind="parking"><td>파킹 (예수금)</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost" contenteditable="true">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">0</td><td class="tnum s-pct">—</td><td class="s-note">파킹통장</td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>레인보우로보틱스</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">10,199,560</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>로보스타</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">875,246</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>삼성SDI</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">3,856,272</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>삼성전기</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">5,988,000</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true">일부 매도</td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>한화에어로스페이스</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">3,164,658</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>LG전자</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">10,104,750</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
-            <tr><td>SK하이닉스</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">11,732,488</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true">일부 매도</td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>레인보우로보틱스</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">10,199,560</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>로보스타</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">875,246</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>삼성SDI</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">3,856,272</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>삼성전기</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">5,988,000</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true">일부 매도</td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>한화에어로스페이스</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">3,164,658</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>LG전자</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">10,104,750</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
+            <tr><td>SK하이닉스</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">11,732,488</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true">일부 매도</td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td></tr>
           </tbody>
           <tfoot>
             <tr class="summary-row">
-              <td>합계</td><td></td><td></td><td></td>
+              <td>합계</td><td class="tnum" id="stock-buyprice-total">—</td>
+              <td class="tnum" id="stock-qty-total">—</td>
+              <td class="tnum" id="stock-cost-total">—</td>
               <td class="tnum" id="stock-total">—</td>
               <td class="tnum">100%</td><td colspan="2"></td>
             </tr>
           </tfoot>
         </table>
       </div>
+      <div id="stock-save-row" style="display:none;margin-top:10px;text-align:right;"><button class="btn btn-success" onclick="saveStockEdit()">💾 저장</button></div>
     </div>
   </div>
 
@@ -940,7 +859,10 @@ tr.row-folded .row-fold-btn{color:#aaa;}
     <div class="card">
       <div class="card-title">
         📝 매매 이력
-        <button class="btn btn-edit btn-sm" onclick="addTradeRow()">+ 추가</button>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-edit btn-sm" id="trade-add-btn" onclick="addTradeRow()" style="display:none;">+ 행 추가</button>
+          <button class="btn btn-edit btn-sm" id="trade-edit-btn" onclick="toggleTradeEdit()">✏️</button>
+        </div>
       </div>
       <div class="table-wrap">
         <table>
@@ -948,19 +870,19 @@ tr.row-folded .row-fold-btn{color:#aaa;}
             <tr><th>종목명</th><th>1주당 구매가</th><th>1주당 판매가</th><th>총매수원금</th><th>총판매수익</th><th>매도일자</th><th></th></tr>
           </thead>
           <tbody id="trade-tbody">
-            <tr><td contenteditable="true">삼성전기</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">30,647,587</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
-            <tr><td contenteditable="true">삼성전자</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">9,161,640</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
-            <tr><td contenteditable="true">한미반도체</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">1,736,520</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
-            <tr><td contenteditable="true">현대오토에버</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">1,397,200</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
-            <tr><td contenteditable="true">현대차</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">1,207,580</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
-            <tr><td contenteditable="true">SK하이닉스 (일부)</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">—</td><td class="tnum" contenteditable="true">20,958,000</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">삼성전기</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">30,647,587</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">삼성전자</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">9,161,640</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">한미반도체</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">1,736,520</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">현대오토에버</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">1,397,200</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">현대차</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">1,207,580</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
+            <tr><td contenteditable="true">SK하이닉스 (일부)</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">20,958,000</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td></tr>
           </tbody>
           <tfoot>
-            <tr class="summary-row"><td colspan="4">총판매수익 합계</td><td class="tnum" id="trade-total">—</td><td colspan="2"></td></tr>
+            <tr class="summary-row"><td>합계</td><td class="tnum" id="trade-buyprice-total">—</td><td class="tnum" id="trade-sellprice-total">—</td><td class="tnum" id="trade-cost-total">—</td><td class="tnum" id="trade-total">—</td><td colspan="2"></td></tr>
           </tfoot>
         </table>
       </div>
-      <div id="trade-save-row" style="display:none;margin-top:10px;text-align:right;"><button class="btn btn-success" onclick="saveTradeEdit()">💾 저장</button><button class="btn btn-danger" onclick="cancelTradeEdit()" style="margin-left:6px;">취소</button></div>
+      <div id="trade-save-row" style="display:none;margin-top:10px;text-align:right;"><button class="btn btn-success" onclick="saveTradeEdit()">💾 저장</button></div>
     </div>
   </div>
 
@@ -1126,18 +1048,19 @@ function toggleBankEdit(){
     bankOrigData = Array.from(cells).map(c => c.textContent);
     cells.forEach(c => c.contentEditable = 'true');
     saveRow.style.display = '';
-    btn.textContent = '✕ 취소';
+    btn.textContent = '✕';
   } else {
     cells.forEach(c => c.contentEditable = 'false');
     saveRow.style.display = 'none';
-    btn.textContent = '✏️ 수정';
+    btn.textContent = '✏️';
   }
 }
 function saveBankEdit(){
   bankEditMode = false;
   document.querySelectorAll('.bank-cell').forEach(c => c.contentEditable = 'false');
   document.getElementById('bank-save-row').style.display = 'none';
-  document.getElementById('bank-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('bank-edit-btn').textContent = '✏️';
+  recalcBankTotals();
   updateDashboard();
   persistData();
 }
@@ -1146,7 +1069,7 @@ function cancelBankEdit(){
   cells.forEach((c,i) => { c.textContent = bankOrigData[i]; c.contentEditable = 'false'; });
   bankEditMode = false;
   document.getElementById('bank-save-row').style.display = 'none';
-  document.getElementById('bank-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('bank-edit-btn').textContent = '✏️';
 }
 
 // ═══ TABLE EDIT (savings/deposit) ═══
@@ -1155,7 +1078,7 @@ const tableOrigData = {};
 const STATUS_OPTIONS = ['납입중','만기완료','만기임박','중도해지','유지중'];
 const STATUS_CLASSES = {'납입중':'tag-green','만기완료':'tag-gray','만기임박':'tag-blue','중도해지':'tag-red','유지중':'tag-orange'};
 
-function toggleTableEdit(tbodyId, saveRowId){
+function toggleTableEdit(tbodyId, saveRowId, btn){
   const mode = !tableEditState[tbodyId];
   tableEditState[tbodyId] = mode;
   const tbody = document.getElementById(tbodyId);
@@ -1174,6 +1097,7 @@ function toggleTableEdit(tbodyId, saveRowId){
       }
     });
     saveRow.style.display = '';
+    if(btn) btn.textContent = '✕';
   } else {
     cancelTableEdit(tbodyId, saveRowId);
   }
@@ -1190,6 +1114,8 @@ function saveTableEdit(tbodyId, saveRowId){
     }
   });
   document.getElementById(saveRowId).style.display = 'none';
+  // restore edit btn icon
+  document.querySelectorAll(`[onclick*="${tbodyId}"]`).forEach(b => { if(b.textContent==='✕') b.textContent='✏️'; });
   persistData();
 }
 function cancelTableEdit(tbodyId, saveRowId){
@@ -1201,6 +1127,8 @@ function cancelTableEdit(tbodyId, saveRowId){
   }
   tbody.querySelectorAll('td').forEach(c => c.contentEditable = 'false');
   document.getElementById(saveRowId).style.display = 'none';
+  // restore edit btn icon
+  document.querySelectorAll(`[onclick*="${tbodyId}"]`).forEach(b => { if(b.textContent==='✕') b.textContent='✏️'; });
 }
 
 // ═══ MONTHLY EDIT ═══
@@ -1219,14 +1147,36 @@ function toggleMonthlyEdit(){
 }
 
 
+
+// ═══ 은행별 잔액 합계 자동계산 ═══
+function recalcBankTotals(){
+  const ids = ['bank-tot-bal','bank-tot-park','bank-tot-sav','bank-tot-dep','bank-tot-fund','bank-tot-sub','bank-tot-dooyak'];
+  const sums = [0,0,0,0,0,0,0];
+  document.querySelectorAll('#bank-tbody tr').forEach(tr => {
+    const cells = tr.querySelectorAll('.bank-cell');
+    cells.forEach((td, i) => { sums[i] += parseNum(td.textContent||'0'); });
+  });
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = sums[i] > 0 ? fmt(sums[i]) : '—';
+  });
+}
 // ═══ 예적금 합계 자동계산 ═══
 function recalcSavingsTotal(){
-  let sum = 0;
-  document.querySelectorAll('#savings-tbody .s-mat').forEach(td => {
-    sum += parseNum(td.textContent);
+  let sumMat = 0, sumMonthly = 0, sumPrincipal = 0;
+  document.querySelectorAll('#savings-tbody tr').forEach(tr => {
+    const cells = tr.querySelectorAll('td');
+    if(cells.length < 5) return;
+    sumMonthly   += parseNum(cells[2]?.textContent||'0');
+    sumPrincipal += parseNum(cells[3]?.textContent||'0');
+    sumMat       += parseNum(cells[4]?.textContent||'0');
   });
   const el = document.getElementById('savings-total');
-  if(el) el.textContent = fmt(sum);
+  if(el) el.textContent = fmt(sumMat);
+  const em = document.getElementById('sav-monthly-total');
+  if(em) em.textContent = sumMonthly > 0 ? fmt(sumMonthly) : '—';
+  const ep = document.getElementById('sav-principal-total');
+  if(ep) ep.textContent = sumPrincipal > 0 ? fmt(sumPrincipal) : '—';
   updateDashboard();
 }
 function recalcDepositTotal(){
@@ -1251,9 +1201,15 @@ function recalcDoneTotal(tbodyId, totalId, colIdx){
   });
   const el = document.getElementById(totalId);
   if(el) el.textContent = fmt(sum);
+  updateDashboard();
 }
 
 // ═══ 숫자 콤마 자동 포맷터 ═══
+// Event delegation: always trigger recalc regardless of localStorage-restored HTML
+document.addEventListener('input', function(e){
+  if(e.target.closest('#stock-tbody')) recalcStocks();
+  if(e.target.closest('#trade-tbody')) recalcTradeTotal();
+});
 document.addEventListener('focusout', function(e){
   const el = e.target;
   if(el.contentEditable !== 'true') return;
@@ -1261,7 +1217,7 @@ document.addEventListener('focusout', function(e){
   const raw = el.textContent.trim().replace(/[^0-9]/g,'');
   if(raw && raw !== '0') {
     const formatted = parseInt(raw).toLocaleString('ko-KR');
-    if(el.textContent.replace(/,/g,'') !== formatted.replace(/,/g,'')) {
+    if(el.textContent.trim() !== formatted) {
       el.textContent = formatted;
       el.dispatchEvent(new Event('input', {bubbles:true}));
     }
@@ -1269,6 +1225,101 @@ document.addEventListener('focusout', function(e){
 }, true);
 
 // ═══ 합계 자동계산 ═══
+
+// ═══ LOAN EDIT ═══
+const LOAN_GU_OPTIONS = ['대출','자납'];
+const LOAN_GU_CLASSES = {'대출':'tag-orange','자납':'tag-green'};
+const LOAN_STATUS_OPTIONS = ['✓ 완료','예정','미확정'];
+const LOAN_STATUS_CLASSES = {'✓ 완료':'tag-done','예정':'tag-blue','미확정':'tag-gray'};
+let loanEditMode = false, loanOrigData = [];
+
+function toggleLoanEdit(btn){
+  loanEditMode = !loanEditMode;
+  const tbody = document.getElementById('loan-tbody');
+  const saveRow = document.getElementById('loan-save-row');
+  if(loanEditMode){
+    loanOrigData = Array.from(tbody.querySelectorAll('td')).map(c => c.innerHTML);
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const tds = tr.querySelectorAll('td');
+      // td[0]: 회차 - editable
+      if(tds[0]) tds[0].contentEditable='true';
+      // td[1]: 구분 tag → select
+      if(tds[1]){
+        const tag = tds[1].querySelector('.tag');
+        const cur = tag ? tag.textContent : '대출';
+        tds[1].innerHTML = '<select class="status-sel">' +
+          LOAN_GU_OPTIONS.map(o=>`<option${o===cur?' selected':''}>${o}</option>`).join('') +
+          '</select>';
+      }
+      // td[2]: 대출실행일 - editable
+      if(tds[2]) tds[2].contentEditable='true';
+      // td[3]: 대출금액 - editable
+      if(tds[3]) tds[3].contentEditable='true';
+      // td[4]: 거치기간 - editable
+      if(tds[4]) tds[4].contentEditable='true';
+      // td[5]: 이율 - editable
+      if(tds[5]) tds[5].contentEditable='true';
+      // td[6]: 발생이자 - editable
+      if(tds[6]) tds[6].contentEditable='true';
+      // td[7]: 보증료 - editable
+      if(tds[7]) tds[7].contentEditable='true';
+      // td[8]: 상태 tag → select
+      if(tds[8]){
+        const tag = tds[8].querySelector('.tag');
+        const cur = tag ? tag.textContent : '예정';
+        tds[8].innerHTML = '<select class="status-sel">' +
+          LOAN_STATUS_OPTIONS.map(o=>`<option${o===cur?' selected':''}>${o}</option>`).join('') +
+          '</select>';
+      }
+    });
+    saveRow.style.display = '';
+    if(btn) btn.textContent = '✕';
+  } else {
+    cancelLoanEdit();
+  }
+}
+
+function saveLoanEdit(){
+  loanEditMode = false;
+  const tbody = document.getElementById('loan-tbody');
+  tbody.querySelectorAll('tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if(tds[0]) tds[0].contentEditable='false';
+    if(tds[1]){
+      const sel = tds[1].querySelector('select');
+      if(sel){ const v=sel.value; tds[1].innerHTML=`<span class="tag ${LOAN_GU_CLASSES[v]||'tag-gray'}">${v}</span>`; }
+    }
+    if(tds[2]) tds[2].contentEditable='false';
+    if(tds[3]) tds[3].contentEditable='false';
+    if(tds[4]) tds[4].contentEditable='false';
+    if(tds[5]) tds[5].contentEditable='false';
+    if(tds[6]) tds[6].contentEditable='false';
+    if(tds[7]) tds[7].contentEditable='false';
+    if(tds[8]){
+      const sel = tds[8].querySelector('select');
+      if(sel){ const v=sel.value; tds[8].innerHTML=`<span class="tag ${LOAN_STATUS_CLASSES[v]||'tag-gray'}">${v}</span>`; }
+    }
+  });
+  document.getElementById('loan-save-row').style.display = 'none';
+  const btn = document.getElementById('loan-edit-btn');
+  if(btn) btn.textContent = '✏️';
+  recalcLoanTotals();
+  updateDashboard();
+  persistData();
+}
+
+function cancelLoanEdit(){
+  loanEditMode = false;
+  const tbody = document.getElementById('loan-tbody');
+  if(loanOrigData.length){
+    const cells = tbody.querySelectorAll('td');
+    loanOrigData.forEach((html,i) => { if(cells[i]) cells[i].innerHTML = html; });
+  }
+  tbody.querySelectorAll('td').forEach(c => c.contentEditable='false');
+  document.getElementById('loan-save-row').style.display = 'none';
+  const btn = document.getElementById('loan-edit-btn');
+  if(btn) btn.textContent = '✏️';
+}
 function recalcLoanTotals(){
   const tbody = document.getElementById('loan-tbody');
   if(!tbody) return;
@@ -1278,9 +1329,9 @@ function recalcLoanTotals(){
     if(cells.length < 7) return;
     const isLoan = tr.querySelector('.tag-orange');
     const isJab = tr.querySelector('.tag-green');
-    const amt = parseNum(cells[2]?.textContent||'0');
-    const intr = parseNum(cells[5]?.textContent||'0');
-    const gua = parseNum(cells[6]?.textContent||'0');
+    const amt = parseNum(cells[3]?.textContent||'0');
+    const intr = parseNum(cells[6]?.textContent||'0');
+    const gua = parseNum(cells[7]?.textContent||'0');
     if(isLoan){ loanAmt+=amt; interest+=intr; guarantee+=gua; }
     if(isJab) jabAmt+=amt;
   });
@@ -1289,6 +1340,7 @@ function recalcLoanTotals(){
   if(el('loan-int-total')) el('loan-int-total').textContent = fmt(interest);
   if(el('loan-gua-total')) el('loan-gua-total').textContent = fmt(guarantee);
   if(el('loan-jab-total')) el('loan-jab-total').textContent = fmt(jabAmt);
+  updateDashboard();
 }
 
 const FUND_TARGETS = {
@@ -1318,16 +1370,26 @@ function recalcFundTotal(tbodyId, totalId, colIdx){
       statusEl.style.color = '#c0392b';
     }
   }
+  updateDashboard();
 }
 
 function recalcTradeTotal(){
-  let sum = 0;
+  let sum = 0, costSum = 0, buySum = 0, sellSum = 0;
   document.querySelectorAll('#trade-tbody tr').forEach(tr => {
     const cells = tr.querySelectorAll('td');
-    if(cells[4]) sum += parseNum(cells[4].textContent||'0');
+    if(cells[1]) buySum  += parseNum(cells[1].textContent||'0');
+    if(cells[2]) sellSum += parseNum(cells[2].textContent||'0');
+    if(cells[3]) costSum += parseNum(cells[3].textContent||'0');
+    if(cells[4]) sum     += parseNum(cells[4].textContent||'0');
   });
-  const el = document.getElementById('trade-total');
-  if(el) el.textContent = fmt(sum)+'원';
+  const el  = document.getElementById('trade-total');
+  const ec  = document.getElementById('trade-cost-total');
+  const ebp = document.getElementById('trade-buyprice-total');
+  const esp = document.getElementById('trade-sellprice-total');
+  if(el)  el.textContent  = fmt(sum)+'원';
+  if(ec)  ec.textContent  = costSum > 0 ? fmt(costSum)  : '—';
+  if(ebp) ebp.textContent = buySum  > 0 ? fmt(buySum)   : '—';
+  if(esp) esp.textContent = sellSum > 0 ? fmt(sellSum)  : '—';
 }
 
 // ═══ 월지출 행 추가 위치 선택 ═══
@@ -1399,7 +1461,7 @@ function saveMonthlyEdit(){
   monthlyEditMode = false;
   document.querySelectorAll('#monthly-tbody .meditable').forEach(c => c.contentEditable = 'false');
   document.getElementById('monthly-save-row').style.display = 'none';
-  document.getElementById('monthly-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('monthly-edit-btn').textContent = '✏️';
   calcMonthly();
   persistData();
 }
@@ -1408,27 +1470,50 @@ function cancelMonthlyEdit(){
   const cells = document.querySelectorAll('#monthly-tbody .meditable');
   cells.forEach((c,i) => { if(monthlyOrig[i] !== undefined) c.textContent = monthlyOrig[i]; c.contentEditable = 'false'; });
   document.getElementById('monthly-save-row').style.display = 'none';
-  document.getElementById('monthly-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('monthly-edit-btn').textContent = '✏️';
   calcMonthly();
 }
 // addMonthlyRow replaced by doAddMonthlyRow
 
 // ═══ STOCK EDIT ═══
-let stockEditMode = false;
+let stockEditMode = false, stockOrig = [];
 function toggleStockEdit(){
   stockEditMode = !stockEditMode;
   const btn = document.getElementById('stock-edit-btn');
-  const nameFields = document.querySelectorAll('#stock-tbody td:first-child');
-  nameFields.forEach(td => {
-    if(!td.closest('tr').dataset.kind) td.contentEditable = stockEditMode ? 'true' : 'false';
-  });
-  btn.textContent = stockEditMode ? '✕ 완료' : '✏️ 수정';
-  if(!stockEditMode){ recalcStocks(); persistData(); }
+  const tbody = document.getElementById('stock-tbody');
+  const saveRow = document.getElementById('stock-save-row');
+  tbody.classList.toggle('edit-mode', stockEditMode);
+  if(stockEditMode){
+    stockOrig = Array.from(tbody.querySelectorAll('td')).map(c => c.innerHTML);
+    saveRow.style.display = '';
+    btn.textContent = '✕';
+    document.getElementById('stock-add-btn').style.display = '';
+  } else { cancelStockEdit(); }
+}
+function saveStockEdit(){
+  stockEditMode = false;
+  document.getElementById('stock-save-row').style.display = 'none';
+  document.getElementById('stock-edit-btn').textContent = '✏️';
+  document.getElementById('stock-add-btn').style.display = 'none';
+  document.getElementById('stock-tbody').classList.remove('edit-mode');
+  recalcStocks();
+  persistData();
+}
+function cancelStockEdit(){
+  stockEditMode = false;
+  const tbody = document.getElementById('stock-tbody');
+  const cells = tbody.querySelectorAll('td');
+  cells.forEach((c,i) => { if(stockOrig[i]!==undefined) c.innerHTML = stockOrig[i]; });
+  document.getElementById('stock-save-row').style.display = 'none';
+  document.getElementById('stock-edit-btn').textContent = '✏️';
+  document.getElementById('stock-add-btn').style.display = 'none';
+  tbody.classList.remove('edit-mode');
+  recalcStocks();
 }
 function addStockRow(){
   const tbody = document.getElementById('stock-tbody');
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td contenteditable="true">종목명</td><td class="tnum s-buy-price" contenteditable="true">—</td><td class="tnum s-qty" contenteditable="true">—</td><td class="tnum s-cost">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">0</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td>`;
+  tr.innerHTML = `<td contenteditable="true">종목명</td><td class="tnum s-buy-price" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-qty" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-cost" contenteditable="true" oninput="recalcStocks()">—</td><td class="tnum s-val" contenteditable="true" oninput="recalcStocks()">0</td><td class="tnum s-pct">—</td><td class="s-note" contenteditable="true"></td><td><button class="btn-icon" onclick="delStockRow(this)">🗑</button></td>`;
   tbody.appendChild(tr);
   recalcStocks();
 }
@@ -1438,8 +1523,7 @@ function delStockRow(btn){
 function addTradeRow(){
   const tbody = document.getElementById('trade-tbody');
   const tr = document.createElement('tr');
-  const ce = tradeEditMode ? 'contenteditable="true"' : '';
-  tr.innerHTML = `<td ${ce}>종목명</td><td class="tnum" ${ce}>—</td><td class="tnum" ${ce}>—</td><td class="tnum" ${ce}>—</td><td class="tnum" ${ce}>—</td><td ${ce}>—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td>`;
+  tr.innerHTML = `<td contenteditable="true">종목명</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td class="tnum" contenteditable="true" oninput="recalcTradeTotal()">—</td><td contenteditable="true">—</td><td><button class="btn-icon" onclick="delTradeRow(this)">🗑</button></td>`;
   tbody.appendChild(tr);
 }
 function delTradeRow(btn){
@@ -1447,36 +1531,42 @@ function delTradeRow(btn){
 }
 let tradeEditMode = false, tradeOrig = [];
 function toggleTradeEdit(){
+  // 매매이력은 항상 편집 가능 - 버튼은 저장/취소 표시만 담당
   tradeEditMode = !tradeEditMode;
-  const tbody = document.getElementById('trade-tbody');
   const saveRow = document.getElementById('trade-save-row');
   const btn = document.getElementById('trade-edit-btn');
   if(tradeEditMode){
-    tradeOrig = Array.from(tbody.querySelectorAll('td')).map(c => c.innerHTML);
-    tbody.querySelectorAll('td:not(:last-child)').forEach(c => c.contentEditable = 'true');
+    tradeOrig = Array.from(document.getElementById('trade-tbody').querySelectorAll('td')).map(c => c.innerHTML);
     saveRow.style.display = '';
     btn.textContent = '✕';
+    document.getElementById('trade-tbody').classList.add('edit-mode');
+    document.getElementById('trade-add-btn').style.display = '';
   } else { cancelTradeEdit(); }
 }
 function saveTradeEdit(){
   tradeEditMode = false;
-  document.getElementById('trade-tbody').querySelectorAll('td').forEach(c => c.contentEditable = 'false');
   document.getElementById('trade-save-row').style.display = 'none';
-  document.getElementById('trade-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('trade-edit-btn').textContent = '✏️';
+  document.getElementById('trade-tbody').classList.remove('edit-mode');
+  document.getElementById('trade-add-btn').style.display = 'none';
+  recalcTradeTotal();
   persistData();
 }
 function cancelTradeEdit(){
   tradeEditMode = false;
   const cells = document.getElementById('trade-tbody').querySelectorAll('td');
-  cells.forEach((c,i) => { if(tradeOrig[i]!==undefined) c.innerHTML = tradeOrig[i]; c.contentEditable = 'false'; });
+  cells.forEach((c,i) => { if(tradeOrig[i]!==undefined) c.innerHTML = tradeOrig[i]; });
   document.getElementById('trade-save-row').style.display = 'none';
-  document.getElementById('trade-edit-btn').textContent = '✏️ 수정';
+  document.getElementById('trade-edit-btn').textContent = '✏️';
+  document.getElementById('trade-tbody').classList.remove('edit-mode');
+  document.getElementById('trade-add-btn').style.display = 'none';
+  recalcTradeTotal();
 }
 
 // ═══ 자금출처 편집 ═══
 const fundEditState = {}, fundOrigData = {};
 const FUND_TOTAL_MAP = {'fund5-body':'fund5-total','fund6-body':'fund6-total','fund-balance-body':'fund-balance-total'};
-function toggleFundEdit(tbodyId, saveRowId){
+function toggleFundEdit(tbodyId, saveRowId, btn){
   const mode = !fundEditState[tbodyId];
   fundEditState[tbodyId] = mode;
   const tbody = document.getElementById(tbodyId);
@@ -1492,7 +1582,9 @@ function toggleFundEdit(tbodyId, saveRowId){
       }
     });
     saveRow.style.display = '';
-  } else { cancelFundEdit(tbodyId, saveRowId); }
+    tbody.classList.add('edit-mode');
+    if(btn) btn.textContent = '✕';
+  } else { cancelFundEdit(tbodyId, saveRowId, btn); }
 }
 function addFundRow(tbodyId){
   const tbody = document.getElementById(tbodyId);
@@ -1512,19 +1604,23 @@ function saveFundEdit(tbodyId, saveRowId){
   const tbody = document.getElementById(tbodyId);
   tbody.querySelectorAll('tr').forEach(tr => {
     tr.querySelectorAll('td:not(:last-child)').forEach(td => td.contentEditable = 'false');
-    // 삭제버튼 td 제거
     const delTd = tr.querySelector('.fund-del-btn')?.closest('td');
     if(delTd) delTd.remove();
   });
   document.getElementById(saveRowId).style.display = 'none';
+  document.getElementById(tbodyId).classList.remove('edit-mode');
+  document.querySelectorAll(`[onclick*="${tbodyId}"]`).forEach(b => { if(b.textContent==='✕') b.textContent='✏️'; });
   persistData();
 }
-function cancelFundEdit(tbodyId, saveRowId){
+function cancelFundEdit(tbodyId, saveRowId, btn){
   fundEditState[tbodyId] = false;
   const tbody = document.getElementById(tbodyId);
   if(fundOrigData[tbodyId]) tbody.innerHTML = fundOrigData[tbodyId];
   tbody.querySelectorAll('td').forEach(c => c.contentEditable = 'false');
   document.getElementById(saveRowId).style.display = 'none';
+  document.getElementById(tbodyId).classList.remove('edit-mode');
+  if(btn) btn.textContent = '✏️';
+  else document.querySelectorAll(`[onclick*="${tbodyId}"]`).forEach(b => { if(b.textContent==='✕') b.textContent='✏️'; });
 }
 
 // ═══ CALCULATIONS ═══
@@ -1551,12 +1647,29 @@ function recalcStocks(){
     const qty = parseNum(tr.querySelector('.s-qty')?.textContent);
     const costCell = tr.querySelector('.s-cost');
     const valCell = tr.querySelector('.s-val');
-    if(costCell && bp && qty) costCell.textContent = fmt(bp*qty);
+    // bp와 qty 둘 다 입력됐을 때만 총매수원금 자동계산
+    if(costCell && bp > 0 && qty > 0) costCell.textContent = fmt(bp*qty);
     const val = parseNum(valCell?.textContent);
     total += val;
   });
   document.getElementById('stock-total').textContent = fmt(total);
   document.getElementById('stock-total2').textContent = fmt(total)+'원';
+  // 보유주식수, 총매수원금 합계
+  let totalQty = 0, totalCost = 0;
+  document.querySelectorAll('#stock-tbody tr:not([data-kind="parking"])').forEach(tr => {
+    totalQty  += parseNum(tr.querySelector('.s-qty')?.textContent||'0');
+    totalCost += parseNum(tr.querySelector('.s-cost')?.textContent||'0');
+  });
+  let totalBuyPrice = 0;
+  document.querySelectorAll('#stock-tbody tr:not([data-kind="parking"])').forEach(tr => {
+    totalBuyPrice += parseNum(tr.querySelector('.s-buy-price')?.textContent||'0');
+  });
+  const sbp = document.getElementById('stock-buyprice-total');
+  const sqt = document.getElementById('stock-qty-total');
+  const sct = document.getElementById('stock-cost-total');
+  if(sbp) sbp.textContent = totalBuyPrice > 0 ? fmt(totalBuyPrice) : '—';
+  if(sqt) sqt.textContent = totalQty > 0 ? fmt(totalQty) : '—';
+  if(sct) sct.textContent = totalCost > 0 ? fmt(totalCost) : '—';
   recalcAcctTotal();
   recalcTradeTotal();
   rows.forEach(tr => {
@@ -1625,29 +1738,74 @@ function calcMonthly(){
 }
 
 function updateDashboard(){
-  // Savings - dynamically sum from DOM
+  // 예적금 합계
   let savingsTotal = 0;
   document.querySelectorAll('#savings-tbody .s-mat').forEach(td => savingsTotal += parseNum(td.textContent));
   document.querySelectorAll('#deposit-tbody .d-mat').forEach(td => savingsTotal += parseNum(td.textContent));
-  
-  // Parking
-  const parking = 24011126;
-  
-  // Stocks
+
+  // 파킹 (주식탭 파킹 행에서 동적 읽기)
+  const parkingEl = document.querySelector('[data-kind="parking"] .s-val');
+  const parking = parkingEl ? parseNum(parkingEl.textContent) : 0;
+
+  // 주식 (파킹 행 제외)
   let stockTotal = 0;
-  document.querySelectorAll('#stock-tbody .s-val').forEach(v => stockTotal += parseNum(v.textContent));
-  
+  document.querySelectorAll('#stock-tbody tr:not([data-kind="parking"]) .s-val').forEach(v => stockTotal += parseNum(v.textContent));
+
   const total = savingsTotal + parking + stockTotal;
-  const monthlySav = 700000+200000+100000+500000;
-  
+
+  // 월저축합계 (이번달 저축+추가저축 행)
+  const curCol = 2 + new Date().getMonth();
+  let monthlySav = 0;
+  document.querySelectorAll('#monthly-tbody tr[data-type="saving"], #monthly-tbody tr[data-type="extra"]').forEach(tr => {
+    const cells = tr.querySelectorAll('td');
+    if(cells[curCol]) monthlySav += parseNum(cells[curCol].textContent);
+  });
+
   document.getElementById('d-total').textContent = fmt(total)+'원';
   document.getElementById('d-savings').textContent = fmt(savingsTotal)+'원';
   document.getElementById('d-parking').textContent = fmt(parking)+'원';
   document.getElementById('d-stocks').textContent = fmt(stockTotal)+'원';
   document.getElementById('d-monthly').textContent = fmt(monthlySav)+'원';
-  
   if(document.getElementById('stock-total2'))
     document.getElementById('stock-total2').textContent = fmt(stockTotal)+'원';
+
+  // 의뷰아 자금현황
+  const done1 = parseNum(document.getElementById('done1-total')?.textContent||'0');
+  const done2 = parseNum(document.getElementById('done2-total')?.textContent||'0');
+  const done3 = parseNum(document.getElementById('done3-total')?.textContent||'0');
+  const aptPaid = done1 + done2 + done3;
+
+  let aptLoan = 0;
+  document.querySelectorAll('#loan-tbody tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if(tds.length >= 9 && tds[1].textContent.includes('대출') && tds[8].textContent.includes('예정')){
+      aptLoan += parseNum(tds[3].textContent||'0');
+    }
+  });
+
+  const fund5 = parseNum(document.getElementById('fund5-total')?.textContent||'0');
+  const fund6 = parseNum(document.getElementById('fund6-total')?.textContent||'0');
+  const aptSelf = fund5 + fund6;
+  const aptBalance = parseNum(document.getElementById('fund-balance-total')?.textContent||'0');
+
+  const elPaid = document.getElementById('dash-apt-paid');
+  const elLoan = document.getElementById('dash-apt-loan');
+  const elSelf = document.getElementById('dash-apt-self');
+  const elBal  = document.getElementById('dash-apt-balance');
+  if(elPaid) elPaid.textContent = '-'+fmt(aptPaid);
+  if(elLoan) elLoan.textContent = fmt(aptLoan);
+  if(elSelf) elSelf.textContent = fmt(aptSelf);
+  if(elBal)  elBal.textContent  = fmt(aptBalance)+'+';
+
+  const aptStatPaid = document.getElementById('apt-stat-paid');
+  const aptStatLoan = document.getElementById('apt-stat-loan');
+  if(aptStatPaid) aptStatPaid.textContent = fmt(aptPaid);
+  if(aptStatLoan) aptStatLoan.textContent = fmt(aptLoan);
+
+  const pct = Math.min(100, Math.round((aptPaid / 817200000) * 100));
+  const pfill = document.getElementById('dash-progress-fill');
+  if(pfill) pfill.style.width = pct+'%';
+  buildTimeline();
 }
 
 // ═══ AUTO-SAVE ═══
@@ -1656,7 +1814,17 @@ const DATA_TBODIES = [
   'stock-tbody','trade-tbody','fund5-body','fund6-body',
   'fund-balance-body','done1-tbody','done2-tbody','done3-tbody','loan-tbody'
 ];
+let _lastSavedDateStr = '';
 function persistData(){
+  // (전역 변수 _lastSavedDateStr 사용)
+  // 마지막 업데이트 일시 갱신
+  const now = new Date();
+  _lastSavedDateStr = now.getFullYear()+'년 '+(now.getMonth()+1)+'월 '+now.getDate()+'일 '
+    +String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  localStorage.setItem('last_updated', _lastSavedDateStr);
+  const hd = document.getElementById('header-date');
+  const {token} = getGHConfig();
+  if(hd) hd.textContent = '마지막 업데이트: '+_lastSavedDateStr + (token ? ' · ⏳ 저장 중...' : ' · 💾 로컬 저장됨');
   try {
     // Bank table
     const bankTbody = document.querySelector('#bank-table tbody');
@@ -1677,6 +1845,21 @@ function persistData(){
   if(typeof pushToGitHub === 'function') pushToGitHub();
 }
 function restoreData(){
+  // loan-tbody 컬럼 변경 마이그레이션 (구분 위치 변경 v2)
+  if(localStorage.getItem('loan_col_ver') !== '3'){
+    localStorage.removeItem('data_loan-tbody');
+    localStorage.setItem('loan_col_ver', '3');
+  }
+  // savings/deposit status 태그 마이그레이션 (select 잔존 방지)
+  if(localStorage.getItem('status_tag_ver') !== '2'){
+    localStorage.removeItem('data_savings-tbody');
+    localStorage.removeItem('data_deposit-tbody');
+    localStorage.setItem('status_tag_ver', '2');
+  }
+  // 마지막 업데이트 일시 복원
+  const saved = localStorage.getItem('last_updated');
+  const hd = document.getElementById('header-date');
+  if(hd && saved) hd.textContent = '마지막 업데이트: '+saved;
   try {
     const bankTbody = document.querySelector('#bank-table tbody');
     const bankData = localStorage.getItem('data_bank');
@@ -1688,7 +1871,7 @@ function restoreData(){
     });
     const memo = document.getElementById('memo');
     const memoData = localStorage.getItem('data_memo');
-    if(memo && memoData) memo.value = memoData;
+    if(memo && memoData !== null) memo.value = memoData;
     const cash = document.getElementById('acct-cash');
     const cashData = localStorage.getItem('data_acct_cash');
     if(cash && cashData) cash.textContent = cashData;
@@ -1715,11 +1898,113 @@ function applyHideDone(){
   if(btn) btn.style.background = hideDone ? '#e6f9f0' : '';
 }
 
+
+// ═══ 타임라인 자동 생성 ═══
+function buildTimeline(){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const soon = new Date(today); soon.setDate(soon.getDate() + 14);
+  const events = [];
+
+  function parseDate(s){
+    if(!s || s==='—') return null;
+    // Strip non-date suffixes like " 예정"
+    s = s.trim().replace(/\s*예정.*$/, '').trim();
+    const parts = s.split('.');
+    if(parts.length < 2) return null;
+    // 2-digit year (e.g. "26.06.15" or "30.01")
+    let y = parseInt(parts[0]);
+    if(y < 100) y += 2000;
+    const m = parseInt(parts[1]) - 1;
+    const d = parts[2] ? parseInt(parts[2]) : 1;
+    if(isNaN(y)||isNaN(m)||isNaN(d)) return null;
+    return new Date(y, m, d);
+  }
+
+  // 적금 rows: name(0), 만기수령액(4), 만기일(5), 상태(7)
+  document.querySelectorAll('#savings-tbody tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 8) return;
+    const name = tds[0].textContent.replace('▼','').trim();
+    const amount = tds[4].textContent.trim();
+    const dateStr = tds[5].textContent.trim();
+    const status = tds[7].textContent.trim();
+    const date = parseDate(dateStr);
+    if(!date || !name) return;
+    if(status.includes('해지')) return; // 중도해지 제외
+    events.push({date, name, amount, status, type:'savings'});
+  });
+
+  // 예금 rows: name(0), 만기수령액(3), 만기일(4), 상태(6)
+  document.querySelectorAll('#deposit-tbody tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 7) return;
+    const name = tds[0].textContent.replace('▼','').trim();
+    const amount = tds[3].textContent.trim();
+    const dateStr = tds[4].textContent.trim();
+    const status = tds[6].textContent.trim();
+    const date = parseDate(dateStr);
+    if(!date || !name) return;
+    if(status.includes('해지')) return; // 중도해지 제외
+    events.push({date, name, amount, status, type:'deposit'});
+  });
+
+  // 의뷰아 납부일정: name(0), 납부일(1), 금액(2), 방법(3), 상태(4)
+  document.querySelectorAll('#sched-tbody tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 5) return;
+    const name = tds[0].textContent.trim();
+    const dateStr = tds[1].textContent.trim();
+    const amount = tds[2].textContent.trim();
+    const method = tds[3].textContent.trim();
+    const status = tds[4].textContent.trim();
+    const date = parseDate(dateStr);
+    if(!date) return;
+    const isLoan = method.includes('대출') && !method.includes('자납');
+    events.push({date, name, amount, status, type: isLoan ? 'loan' : 'apt'});
+  });
+
+  // 날짜순 정렬
+  events.sort((a,b) => a.date - b.date);
+
+  // HTML 생성
+  const wrap = document.getElementById('timeline-wrap');
+  if(!wrap) return;
+
+  wrap.innerHTML = events.map(ev => {
+    const isDone = ev.status.includes('완료') || ev.status.includes('만기완료') || ev.status.includes('만기완료') || (ev.date < today && !ev.status.includes('납입중') && !ev.status.includes('유지중'));
+    const isNow = !isDone && ev.date <= soon;
+    const isLoan = ev.type === 'loan';
+    const isSavings = ev.type === 'savings' || ev.type === 'deposit';
+
+    const dotClass = isDone ? 'done' : isLoan ? 'loan' : isNow ? 'active-now' : 'future';
+    const y = ev.date.getFullYear(), mo = String(ev.date.getMonth()+1).padStart(2,'0'), d = String(ev.date.getDate()).padStart(2,'0');
+    const dateLabel = `${y}.${mo}.${d}`;
+    const dateSuffix = isDone ? ' 완료' : isNow ? ' 임박' : '';
+
+    let amtClass = isDone ? 'c-green' : isLoan ? 'c-orange' : isNow ? 'c-blue' : '';
+    const amtNum = parseNum(ev.amount);
+    let amtText = amtNum > 0 ? fmt(amtNum)+'원' : ev.amount;
+    let amtPrefix = isSavings ? '+' : '';
+    let amtSuffix = isLoan ? ' (대출)' : (ev.type==='apt' && isDone) ? ' 납부완료' : '';
+
+    return `<div class="tl-item">
+          <div class="tl-dot ${dotClass}"></div>
+          <div class="tl-date">${dateLabel}${dateSuffix}</div>
+          <div class="tl-title">${ev.name}</div>
+          <div class="tl-amount ${amtClass}">${amtPrefix}${amtText}${amtSuffix}</div>
+        </div>`;
+  }).join('\n');
+
+  // 숨기기 상태 재적용
+  applyHideDone();
+}
+
 // ═══ 메모 수정/저장 ═══
 function toggleMemoEdit(){
   const memo = document.getElementById('memo');
   const editBtn = document.getElementById('memo-edit-btn');
   const saveBtn = document.getElementById('memo-save-btn');
+  const cancelBtn = document.getElementById('memo-cancel-btn');
   memo.readOnly = false;
   memo.style.background = 'white';
   memo.style.cursor = 'text';
@@ -1727,31 +2012,43 @@ function toggleMemoEdit(){
   memo.focus();
   editBtn.style.display = 'none';
   saveBtn.style.display = '';
+  cancelBtn.style.display = '';
 }
 function saveMemo(){
   const memo = document.getElementById('memo');
   const editBtn = document.getElementById('memo-edit-btn');
   const saveBtn = document.getElementById('memo-save-btn');
+  const cancelBtn = document.getElementById('memo-cancel-btn');
   memo.readOnly = true;
   memo.style.background = '#fafafa';
   memo.style.cursor = 'default';
   memo.style.borderColor = '#e8e8e8';
   editBtn.style.display = '';
   saveBtn.style.display = 'none';
+  cancelBtn.style.display = 'none';
+  localStorage.setItem('data_memo', memo.value);
   persistData();
-  pushToGitHub();
+}
+function cancelMemo(){
+  const memo = document.getElementById('memo');
+  memo.value = localStorage.getItem('data_memo') || '';
+  memo.readOnly = true;
+  memo.style.background = '#fafafa';
+  memo.style.cursor = 'default';
+  memo.style.borderColor = '#e8e8e8';
+  document.getElementById('memo-edit-btn').style.display = '';
+  document.getElementById('memo-save-btn').style.display = 'none';
+  document.getElementById('memo-cancel-btn').style.display = 'none';
 }
 
 // ═══ GitHub 자동 업로드 ═══
 function getGHConfig(){
-  // 기본값 세팅 (첫 방문 시)
   if(!localStorage.getItem('gh_repo')) localStorage.setItem('gh_repo','jhjung-hub/jh-hub');
   if(!localStorage.getItem('gh_path')) localStorage.setItem('gh_path','Money Map/Money Map.html');
   return {
-    token: localStorage.getItem('gh_token')||''
-,
-    repo:  localStorage.getItem('gh_repo')||'',
-    path:  localStorage.getItem('gh_path')||''
+    token: localStorage.getItem('gh_token')||'',
+    repo:  localStorage.getItem('gh_repo')||'jhjung-hub/jh-hub',
+    path:  localStorage.getItem('gh_path')||'Money Map/Money Map.html'
   };
 }
 function showGHStatus(msg, ok){
@@ -1766,7 +2063,11 @@ function showGHStatus(msg, ok){
 }
 async function pushToGitHub(){
   const {token, repo, path} = getGHConfig();
-  if(!token || !repo || !path) return;
+  if(!token || !repo || !path){
+    const hd0 = document.getElementById('header-date');
+    if(hd0) hd0.textContent = '마지막 업데이트: '+_lastSavedDateStr+' · 💾 로컬 저장됨';
+    return;
+  }
   try {
     showGHStatus('⏳ GitHub 업로드 중...', true);
     // Serialize current DOM
@@ -1794,9 +2095,17 @@ async function pushToGitHub(){
       headers:{ Authorization:'token '+token, 'Content-Type':'application/json' },
       body: JSON.stringify({ message:'Money Map 자동 업데이트', content: encoded, sha: info.sha })
     });
-    if(pushResp.ok) showGHStatus('✅ GitHub 저장 완료', true);
-    else showGHStatus('❌ 업로드 실패 (토큰/권한 확인)', false);
+    const hd2 = document.getElementById('header-date');
+    if(pushResp.ok){
+      showGHStatus('✅ GitHub 저장 완료', true);
+      if(hd2) hd2.textContent = '마지막 업데이트: '+_lastSavedDateStr+' · ✅ 저장됨';
+    } else {
+      showGHStatus('❌ 업로드 실패 (토큰/권한 확인)', false);
+      if(hd2) hd2.textContent = '마지막 업데이트: '+_lastSavedDateStr+' · ❌ 저장 실패';
+    }
   } catch(e){
+    const hd3 = document.getElementById('header-date');
+    if(hd3) hd3.textContent = '마지막 업데이트: '+_lastSavedDateStr+' · ❌ 저장 실패';
     showGHStatus('❌ 오류: '+e.message, false);
   }
 }
@@ -1819,12 +2128,39 @@ function loadGHSettings(){
   if(p) document.getElementById('s-gh-path').value = p;
 }
 
+
+function repairStatusTags(){
+  const SC = STATUS_CLASSES;
+  [[document.querySelectorAll('#savings-tbody tr'), 7],
+   [document.querySelectorAll('#deposit-tbody tr'), 6]].forEach(([rows, idx]) => {
+    rows.forEach(tr => {
+      const tds = tr.querySelectorAll('td');
+      if(!tds[idx]) return;
+      const td = tds[idx];
+      const sel = td.querySelector('select.status-sel');
+      if(sel){
+        const val = sel.value;
+        td.innerHTML = `<span class="tag ${SC[val]||'tag-gray'}">${val}</span>`;
+        return;
+      }
+      if(!td.querySelector('.tag')){
+        const val = td.textContent.trim();
+        if(val && SC[val]) td.innerHTML = `<span class="tag ${SC[val]}">${val}</span>`;
+      }
+    });
+  });
+}
 function initAll(){
   // localStorage 제목 마이그레이션: 구버전 'MoneyMap' → 'Money Map'
   if(localStorage.getItem('app_title') === 'MoneyMap') localStorage.setItem('app_title','Money Map');
 
   restoreData();
+  repairStatusTags();
   recalcStocks();
+  recalcSavingsTotal();
+  recalcDepositTotal();
+  recalcBankTotals();
+  recalcTradeTotal();
   calcMonthly();
   updateDashboard();
   // 자금 출처 상태 초기화
